@@ -43,7 +43,7 @@ async fn send_prompt_with_image(
     let (_, ext, _) = extract_file_info(file_path).map_err(|err| anyhow::anyhow!("Error extract file info: {}", err))?;
     
     let images_data = match ext.clone().unwrap_or_default().as_str() {
-        "jpg" | "jpeg" | "png" => tokio::fs::read(file_path).await.map_err(|err| anyhow::anyhow!("Error reading file: {}", err)).map(|it| vec!(it))?,
+        "jpg" | "jpeg" => tokio::fs::read(file_path).await.map_err(|err| anyhow::anyhow!("Error reading file: {}", err)).map(|it| vec!(it))?,
         "pdf" => {
             let pdf = PDF::from_file(file_path)?;
                 let pages = pdf.render(
