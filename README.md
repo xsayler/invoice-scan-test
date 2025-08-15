@@ -30,7 +30,7 @@
   ```
 - macOS (через Homebrew):
   ```bash
-  sudo apt-get install poppler-utils
+  brew install poppler
   ```
 - Windows:
   Скачайте с [poppler-windows](https://github.com/oschwartz10612/poppler-windows)
