@@ -23,7 +23,7 @@
   ollama pull qwen2.5vl:7b
   ```
   
-###3. Poppler Utilities (для обработки PDF)
+### 3. Poppler Utilities (для обработки PDF)
 - Linux (Debian/Ubuntu):  
   ```bash
   sudo apt-get install poppler-utils
