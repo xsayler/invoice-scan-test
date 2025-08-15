@@ -3,6 +3,7 @@ use pdf2image::{image, RenderOptionsBuilder, PDF};
 use serde::{Deserialize, Serialize};
 use std::env;
 use std::io::Cursor;
+use std::time::Instant;
 use anyhow::Result;
 use tracing_subscriber::prelude::*;
 use tracing_subscriber::{fmt, EnvFilter};
@@ -99,9 +100,11 @@ async fn send_prompt_with_image(
 
 #[tokio::main]
 async fn main() -> Result<()> {
-     let args: Vec<String> = env::args().collect();
+    let start = Instant::now();
+    
+    let args: Vec<String> = env::args().collect();
      
-     if args.len() != 2 {
+    if args.len() != 2 {
         eprintln!("Usage: invoice-scan-test <image_path>");
         return Err(anyhow::anyhow!("Invalid arguments"));
     }
@@ -153,6 +156,10 @@ async fn main() -> Result<()> {
     ).await?;
 
     println!("{}", serde_json::to_string_pretty(&response)?);
+    
+    let duration = start.elapsed();
+    let secs = duration.as_secs_f64();
+    println!("Выполнено за: {:.6} сек", secs);
     
     Ok(())
 }
